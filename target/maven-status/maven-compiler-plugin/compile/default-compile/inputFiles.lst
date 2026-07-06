@@ -1,16 +1,21 @@
-C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\MDIRecomendaciones.java
+C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\PanelProduccion.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\mdilechediaria.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\dao\LoteSemenDAO.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\mdiRegistroParto.java
+C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\PanelIngresos.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\LoteSemen.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\frmLogin.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\mdiVentaLeche.java
+C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\PanelGastos.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\RegistroCria.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\UsoInsumo.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\CompraInsumo.java
+C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\Digcatalogopredefinido.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\VentaLeche.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\mdiBancoGenetico.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\mdiMascotas.java
+C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\FrmEstadisticas.java
+C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\PanelVentas.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\Animal.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\com\mycompany\main\ProGanaderia.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\TemaGanadero.java
@@ -28,8 +33,10 @@ C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\PanelDegradado.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\frmMenu.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\vacunas.java
+C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\PanelDashboard.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\mdiPrevencion.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\CategoriaInsumo.java
+C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\PanelResumenGeneral.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\Gestacion.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\VentaLecheDAO.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\dao\GestacionDAO.java
@@ -38,7 +45,6 @@ C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\Pa
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\dao\RegistroCriaDAO.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\fmrLoginnuevo.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\mdiEstadisticas.java
-C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\RecomendacionesIA.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\Estilos\EstiloFormularioBase.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\mascotas.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\mdiVacunasmascotas.java
@@ -46,4 +52,5 @@ C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\mdiProduccionC.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\frmnuevomenu.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\clases\conexion.java
+C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\PanelReportesAvanzados.java
 C:\Users\USUARIO\Documents\NetBeansProjects\proGanaderia\src\main\java\interfaz\mdiGestacion.java

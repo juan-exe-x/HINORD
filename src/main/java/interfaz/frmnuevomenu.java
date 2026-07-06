@@ -26,17 +26,25 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import java.awt.Desktop;
+import java.awt.RenderingHints;
 import java.beans.PropertyVetoException;
 import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class frmnuevomenu extends javax.swing.JFrame {
 
+    private JPanel panelCards;
+    private JLabel lblValorRegistrado;
+    private JLabel lblValorVacunado;
+    private javax.swing.Timer timerActualizador;
+
     public frmnuevomenu() {
 
         escritorio = new clases.panelmenudegradado();
+        inicializarDashboard();
 
         // ── NUEVO: wrap del escritorio en JScrollPane ─────────────────────
         javax.swing.JScrollPane scrollEscritorio = new javax.swing.JScrollPane(escritorio);
@@ -58,13 +66,12 @@ public class frmnuevomenu extends javax.swing.JFrame {
 
         setVisible(true);
 
-        cargarDashboard();
         addComponentListener(new java.awt.event.ComponentAdapter() {
             @Override
             public void componentResized(java.awt.event.ComponentEvent e) {
-                if (panelCards != null) {
-                    int x = (getWidth() - panelCards.getWidth()) / 2;
-                    panelCards.setLocation(x, 80); // 👈 mismo valor que en cargarDashboard
+                if (panelcPanel != null) {
+                    int x = (getWidth() - panelcPanel.getWidth()) / 2;
+                    panelcPanel.setLocation(x, 80); // 👈 mismo valor que en cargarDashboard
                 }
             }
         });
@@ -102,7 +109,7 @@ public class frmnuevomenu extends javax.swing.JFrame {
         escritorio.repaint();
     }
     private clases.panelmenudegradado escritorio;
-    private JPanel panelCards;
+    private JPanel panelcPanel;
 
     private void crearMenuBar() {
 
@@ -266,14 +273,7 @@ public class frmnuevomenu extends javax.swing.JFrame {
 
         agregarHoverMenu(menuProduccion, colorBarra, colorHover);
 
-        //modulo con IA
-        leche.addActionListener(e -> {
-            try {
-                abrirMDI(new MDIRecomendaciones());
-            } catch (java.beans.PropertyVetoException ex) {
-                ex.printStackTrace();
-            }
-        });
+        
 
         JMenuItem VentaAnimal = new JMenuItem("Venta de Ganado");
 
@@ -315,6 +315,17 @@ public class frmnuevomenu extends javax.swing.JFrame {
         menuEstadisticas.setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         agregarHoverMenu(menuEstadisticas, colorBarra, colorHover);
+
+        JMenuItem itemPanelGeneral = new JMenuItem("Panel General de Estadísticas");
+        itemPanelGeneral.setFont(fuenteItem);
+        itemPanelGeneral.setIcon(new ImageIcon(getClass().getResource("/imagenes/stats.png")));
+        agregarHoverItem(itemPanelGeneral, colorItemHover);
+        menuEstadisticas.add(itemPanelGeneral);
+
+        itemPanelGeneral.addActionListener(e -> {
+            FrmEstadisticas ventanaEstadisticas = new FrmEstadisticas();
+            ventanaEstadisticas.setVisible(true);
+        });
 
         // ============================
         // 🔹 MENÚ INVENTARIO
@@ -580,36 +591,6 @@ public class frmnuevomenu extends javax.swing.JFrame {
 
     }
 
-    private void cargarDashboard() {
-        try {
-            int totalRegistros = cargarKPIs();
-            int totalVacunas = cargarvacunas();
-
-            // Panel transparente que flotará encima del JDesktopPane
-            JPanel panelCards = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 10));
-            panelCards.setOpaque(false);
-
-            panelCards.add(crearCard("Ganado Registrado", String.valueOf(totalRegistros)));
-            panelCards.add(crearCard("Ganado Vacunado", String.valueOf(totalVacunas)));
-
-            // 📐 Calcula el centro dinámicamente
-            int anchoPanel = 440;  // ajusta si agregas más cards
-            int altoPanel = 140;
-            int frameAncho = getWidth();
-            int xCentrado = (frameAncho - anchoPanel) / 2;
-
-            panelCards.setBounds(xCentrado, 80, anchoPanel, altoPanel);
-
-            // 🔑 Agréga al LayeredPane del JFrame, por ENCIMA del JDesktopPane
-            escritorio.add(panelCards, JLayeredPane.DEFAULT_LAYER);
-            escritorio.revalidate();
-            escritorio.repaint();
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
     private int cargarvacunas() throws SQLException {
 
         int total = 0;
@@ -625,6 +606,89 @@ public class frmnuevomenu extends javax.swing.JFrame {
         }
 
         return total;
+    }
+    // Modificado para recibir un JLabel externo y asignarlo
+
+    private JPanel crearCard(String titulo, JLabel labelValor) {
+        JPanel card = new JPanel() {
+            @Override
+            protected void paintComponent(java.awt.Graphics g) {
+                super.paintComponent(g);
+                Graphics2D g2 = (Graphics2D) g;
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(new Color(0, 0, 0, 160));
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+            }
+        };
+
+        card.setOpaque(false);
+        card.setPreferredSize(new Dimension(180, 120));
+        card.setLayout(new BorderLayout());
+
+        JLabel t = new JLabel(titulo, SwingConstants.CENTER);
+        t.setForeground(Color.LIGHT_GRAY);
+        t.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+
+        // El label de valor ya viene configurado desde fuera
+        labelValor.setHorizontalAlignment(SwingConstants.CENTER);
+        labelValor.setForeground(Color.WHITE);
+        labelValor.setFont(new Font("Segoe UI", Font.BOLD, 28));
+
+        card.add(t, BorderLayout.NORTH);
+        card.add(labelValor, BorderLayout.CENTER);
+
+        return card;
+    }
+
+// NUEVO MÉTODO: Construye la interfaz una sola vez
+    public void inicializarDashboard() {
+        // Inicializamos los labels con "0" provisionalmente
+        lblValorRegistrado = new JLabel("0");
+        lblValorVacunado = new JLabel("0");
+
+        panelcPanel = new JPanel(new FlowLayout(FlowLayout.LEFT, 20, 10));
+        panelcPanel.setOpaque(false);
+
+        // Pasamos las referencias de nuestros labels globales
+        panelcPanel.add(crearCard("Ganado Registrado", lblValorRegistrado));
+        panelcPanel.add(crearCard("Ganado Vacunado", lblValorVacunado));
+
+        int anchoPanel = 440;
+        int altoPanel = 140;
+        int frameAncho = getWidth();
+        int xCentrado = (frameAncho - anchoPanel) / 2;
+
+        panelcPanel.setBounds(xCentrado, 80, anchoPanel, altoPanel);
+
+        escritorio.add(panelcPanel, JLayeredPane.DEFAULT_LAYER);
+
+        // Traemos los datos reales por primera vez
+        actualizarDatosDashboard();
+
+        // CONFIGURAMOS EL TIMER: Ejecuta actualizarDatosDashboard() cada 5 minutos
+        // 5 minutos = 5 * 60 * 1000 milisegundos = 300000 ms
+        timerActualizador = new javax.swing.Timer(300000, e -> actualizarDatosDashboard());
+        timerActualizador.start(); // Inicia el bucle de tiempo
+    }
+
+// NUEVO MÉTODO: Solo consulta la BD y refresca los textos de los Labels existentes
+    public void actualizarDatosDashboard() {
+        try {
+            int totalRegistros = cargarKPIs();
+            int totalVacunas = cargarvacunas();
+
+            // Cambiamos el texto de los componentes que ya están en pantalla
+            if (lblValorRegistrado != null && lblValorVacunado != null) {
+                lblValorRegistrado.setText(String.valueOf(totalRegistros));
+                lblValorVacunado.setText(String.valueOf(totalVacunas));
+            }
+
+            escritorio.revalidate();
+            escritorio.repaint();
+
+        } catch (SQLException e) {
+            System.out.println("Error al actualizar Dashboard de fondo: " + e.getMessage());
+        }
     }
 
     @SuppressWarnings("unchecked")

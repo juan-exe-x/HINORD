@@ -306,6 +306,16 @@ public class mdiRegistro extends javax.swing.JInternalFrame {
                 String resultado = r.eliminar(idregistroActual); // usa el ID, no el nombre
 
                 JOptionPane.showMessageDialog(null, resultado);
+                // =========================================================
+                    // 🔥 NUEVO: NOTIFICAR AL DASHBOARD PRINCIPAL EL CAMBIO
+                    // =========================================================
+                    java.awt.Window ventanaAnfitriona = javax.swing.SwingUtilities.getWindowAncestor(this);
+                    
+                    // NOTA: Reemplaza 'VentanaPrincipal' por el nombre EXACTO de tu clase JFrame principal
+                    if (ventanaAnfitriona instanceof frmnuevomenu) {
+                        ((frmnuevomenu) ventanaAnfitriona).actualizarDatosDashboard();
+                    }
+                    // =========================================================
 
                 // Solo limpia si fue exitoso
                 if (resultado.equals("Animal eliminado correctamente")) {
@@ -361,6 +371,17 @@ public class mdiRegistro extends javax.swing.JInternalFrame {
 
                     JOptionPane.showMessageDialog(null,
                             "Registro guardado correctamente. ID asignado: " + idGenerado);
+                    
+                    // =========================================================
+                    // 🔥 NUEVO: NOTIFICAR AL DASHBOARD PRINCIPAL EL CAMBIO
+                    // =========================================================
+                    java.awt.Window ventanaAnfitriona = javax.swing.SwingUtilities.getWindowAncestor(this);
+                    
+                    // NOTA: Reemplaza 'VentanaPrincipal' por el nombre EXACTO de tu clase JFrame principal
+                    if (ventanaAnfitriona instanceof frmnuevomenu) {
+                        ((frmnuevomenu) ventanaAnfitriona).actualizarDatosDashboard();
+                    }
+                    // =========================================================
                 } else {
                     JOptionPane.showMessageDialog(null, "No se pudo guardar el registro",
                             "Error", JOptionPane.ERROR_MESSAGE);
@@ -421,6 +442,16 @@ public class mdiRegistro extends javax.swing.JInternalFrame {
             boolean actualizado = r.actualizar(idregistro, nombre, IDICA, fecnac, raza, sexo, edad, peso, clasificacion,estado);
             if (actualizado) {
                 JOptionPane.showMessageDialog(null, "Registro Actualizado Correctamente");
+                // =========================================================
+                    // 🔥 NUEVO: NOTIFICAR AL DASHBOARD PRINCIPAL EL CAMBIO
+                    // =========================================================
+                    java.awt.Window ventanaAnfitriona = javax.swing.SwingUtilities.getWindowAncestor(this);
+                    
+                    // NOTA: Reemplaza 'VentanaPrincipal' por el nombre EXACTO de tu clase JFrame principal
+                    if (ventanaAnfitriona instanceof frmnuevomenu) {
+                        ((frmnuevomenu) ventanaAnfitriona).actualizarDatosDashboard();
+                    }
+                    // =========================================================
             } else {
                 JOptionPane.showMessageDialog(null, "No se encontró el registro o no hubo cambios.",
                         "Advertencia", JOptionPane.WARNING_MESSAGE);
